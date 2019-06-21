@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=projeto2
+PROJECTNAME=algoritmos-de-orena-o
 
 # Active Configuration
 DEFAULTCONF=Debug
