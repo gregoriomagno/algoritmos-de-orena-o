@@ -33,7 +33,7 @@ int main(void) {
     int vet41[10000];
     int vet42[10000];
     int vet43[10000];
-
+    preencher(vet41, 10000, 1);
     povoar(vet11, vet12, vet13, vet21, vet22, vet23, vet31, vet32, vet33, vet41, vet42, vet43);
     //show(vet11,vet12,vet13,vet21,vet22,vet23,vet31,vet32,vet33,vet41,vet42,vet43);
 
@@ -41,58 +41,69 @@ int main(void) {
     int t1 = 10;
     int t2 = 100;
     int t3 = 1000;
-    //show(vet13, 10);
-    selectionSort(vet21, t2);
-    show(vet21, t2);
-    selectionSort(vet22, t2);
-    show(vet22, t2);
-    selectionSort(vet23, t2);
-    show(vet23, t2);
+    show(vet13, t1);
+    //show(vet41, 10000);
+    bubbleSort(vet13, t1);
+    show(vet13, t1);
+    //selectionSort(vet12, t1);
+    //show(vet12, t1);
+    //selectionSort(vet13, t1);
+    //show(vet13, t1);
     return 0;
 }
 
 void selectionSort(int *p, int tamanho) {
     int menor, aux;
     int trocas = 0;
-    for (int x = 0; x < tamanho; x++) {
-        menor = p[x];
+    for (int x = 0; x < tamanho - 1; x++) {
+        menor = x;
         for (int y = x + 1; y < tamanho; y++) {
-            //printf("menor = %d ; y=%d \n",menor,p[y]);
-            if (p[y] < menor) {
-                // printf("troca %d < %d\n",p[y],menor);
-                trocas++;
-                aux = menor;
-                menor = p[y];
-                p[y] = aux;
+            printf("menor = %d ; y=%d \n", p[menor], p[y]);
+
+            if (p[y] < p[menor]) {
+                printf("troca %d < %d\n", p[y], p[menor]);
+
+
+                menor = y;
+
             }
         }
         //printf("----------- Menor %d \n",menor);
-        p[x] = menor;
+        //if (p[menor] != p[x]) {
+        trocas++;
+        aux = p[x];
+        p[x] = p[menor];
+        p[menor] = aux;
+        // }
     }
-    //printf("N° de trocas %d \n",trocas);
+    printf("N° de trocas %d \n", trocas);
 }
 
 void bubbleSort(int *p, int tamanho) {
     int aux;
+    int maior;
     int trocas = 0;
-    for (int x = tamanho; x > 0; x--) {
+    int compara = 0;
+    for (int x = 0; x < tamanho; x++) {
         //printf("x = %d \t",x);
-        aux = p[0];
-        for (int y = 1; y < tamanho; y++) {
+        maior=x;
+        aux;
+        for (int y = x+1; y < tamanho; y++) {
             // printf("x = %d \n",y);
-            if (aux > p[y]) {
-                //printf("troca %d > %d\n",aux,p[y]);
+            compara++;
+            if (p[maior] > p[y]) {
                 trocas++;
-                p[y - 1] = p[y];
-                p[y] = aux;
-            } else {
-                //printf("passa %d > ",aux);
                 aux = p[y];
-                //printf("%d \n",aux);
-            }
+                p[y]=p[maior];
+                p[maior] = aux;
+                
+                
+            } 
+          
         }
+       
     }
-    // printf("N° de trocas %d\n", trocas);
+    printf("N° de trocas %d\t comparacoes %d \n", trocas, compara);
 }
 //funcao para preencher todos os vetores
 
@@ -119,7 +130,7 @@ void povoar(int *p11, int *p12, int *p13, int *p21, int *p22, int *p23, int *p31
 void show(int *p, int t) {
     printf("vetor t = %d: \n(", t);
     for (int y = 0; y < t; y++) {
-        printf("%d  ", p[y]);
+        printf("%d,", p[y]);
     }
     printf(")\n");
 }
