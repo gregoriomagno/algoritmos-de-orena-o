@@ -6,6 +6,7 @@ int NAleatorio(int maxi);
 void show(int *p, int t);
 void bubbleSort(int *p, int tamanho);
 void selectionSort(int *p, int tamanho);
+void insertSort(int *p, int tamanho);
 void preencher(int *p, int t, int tipo);
 void povoar(int *p11, int *p12, int *p13, int *p21, int *p22, int *p23, int *p31, int *p32, int *p33, int *p41, int *p42, int *p43);
 void show(int *p11, int *p12, int *p13, int *p21, int *p22, int *p23, int *p31, int *p32, int *p33, int *p41, int *p42, int *p43);
@@ -41,15 +42,36 @@ int main(void) {
     int t1 = 10;
     int t2 = 100;
     int t3 = 1000;
-    show(vet13, t1);
+    show(vet12, t1);
     //show(vet41, 10000);
-    bubbleSort(vet13, t1);
-    show(vet13, t1);
+    insertSort(vet12, t1);
+    show(vet12, t1);
     //selectionSort(vet12, t1);
     //show(vet12, t1);
     //selectionSort(vet13, t1);
     //show(vet13, t1);
     return 0;
+}
+
+void insertSort(int *p, int tamanho) { 
+    int comp=0;
+    for (int x = 1; x <tamanho; x++) {
+        int aux=p[x];
+        int i = x-1;
+        //printf("%d > %d ???\n",p[i],aux);
+        while (i >= 0 && p[i] > aux) {
+            comp++;
+            printf("%d° %d > %d\n",comp,p[i],aux);
+            p[i+1] = p[i];
+            //comp++;
+            i--;
+        }
+        
+        p[i+1]=aux;   
+        //show(p,tamanho);
+
+    }
+    //printf("comp %d \n",comp);
 }
 
 void selectionSort(int *p, int tamanho) {
@@ -86,22 +108,18 @@ void bubbleSort(int *p, int tamanho) {
     int compara = 0;
     for (int x = 0; x < tamanho; x++) {
         //printf("x = %d \t",x);
-        maior=x;
+        maior = x;
         aux;
-        for (int y = x+1; y < tamanho; y++) {
+        for (int y = x + 1; y < tamanho; y++) {
             // printf("x = %d \n",y);
             compara++;
             if (p[maior] > p[y]) {
                 trocas++;
                 aux = p[y];
-                p[y]=p[maior];
+                p[y] = p[maior];
                 p[maior] = aux;
-                
-                
-            } 
-          
+            }
         }
-       
     }
     printf("N° de trocas %d\t comparacoes %d \n", trocas, compara);
 }
