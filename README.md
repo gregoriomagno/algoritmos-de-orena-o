@@ -1,1 +1,1 @@
-# algoritmos-de-orena-o
+# algoritmos-de-ordenação
